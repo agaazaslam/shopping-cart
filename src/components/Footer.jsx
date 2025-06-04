@@ -2,7 +2,7 @@ import React from "react";
 
 function Footer() {
   return (
-    <footer className="bg-green-100 p-3 flex justify-center gap-15  ">
+    <footer className="bg-black text-white p-3 flex justify-center gap-15  ">
       <p className="text-center">
         Copyright &copy; {new Date().getFullYear()} Shopping Cart.
       </p>

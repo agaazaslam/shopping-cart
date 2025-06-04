@@ -13,23 +13,26 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex space-x-6">
-          <a href="#">Home</a>
           <Link
             className="px-3 rounded-2xl hover:text-gray-300 hover:bg-blue-300"
-            to="cart"
+            to="/"
           >
-            {" "}
-            Cart
+            Home
           </Link>
-          <a href="#" className="hover:text-gray-300">
-            Contact
-          </a>
-          <a href="#" className="hover:text-gray-300">
+
+          <Link
+            className="px-3 rounded-2xl hover:text-gray-300 hover:bg-blue-300"
+            to="/products"
+          >
             Products
-          </a>
-          <a href="#" className="flex gap-3 hover:text-gray-300">
+          </Link>
+
+          <Link
+            className="px-3 rounded-2xl hover:text-gray-300 hover:bg-blue-300"
+            to="/cart"
+          >
             <ShoppingBag />
-          </a>
+          </Link>
         </div>
 
         {/* Mobile Menu Toggle Button */}
