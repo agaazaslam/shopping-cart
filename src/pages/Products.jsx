@@ -3,35 +3,18 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
 import Card from "../components/Card";
-
+import { LoaderCircle } from "lucide-react";
 function Products() {
   const navigate = useNavigate();
   const params = useParams();
 
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const product1 = {
-    id: 1,
-    title: "iPhone 9",
-    description: "An apple mobile which is nothing like apple",
-    price: 549,
-    discountPercentage: 12.96,
-    rating: 4.69,
-    stock: 94,
-    brand: "Apple",
-    category: "smartphones",
-    thumbnail1: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-    thumbnail: "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg",
-    images: [
-      "https://cdn.dummyjson.com/product-images/1/1.jpg",
-      "https://cdn.dummyjson.com/product-images/1/2.jpg",
-      "https://cdn.dummyjson.com/product-images/1/3.jpg",
-      "https://cdn.dummyjson.com/product-images/1/4.jpg",
-      "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg",
-    ],
-  };
+  // using Context
+
+  // Sample data to test Card Component
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -63,10 +46,16 @@ function Products() {
         setLoading(false);
       }
     };
-    fetchProducts();
+    const delay = setTimeout(fetchProducts, 2000);
+    return () => clearTimeout(delay);
   }, []);
 
-  if (loading) return <p>Loading... </p>;
+  if (loading)
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <LoaderCircle className=" text-red-400 w-24 h-24 " />
+      </div>
+    );
   if (error) return <p>{error.message}</p>;
 
   return (

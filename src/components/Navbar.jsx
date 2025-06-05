@@ -1,9 +1,14 @@
 import { ShoppingBag } from "lucide-react";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useCart } from "../context/CartContext";
+import CartIcon from "./CartIcon";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  // use Cart Context
+  const { handleTotalPrice } = useCart();
 
   return (
     <nav className="bg-slate-800 text-white p-4 shadow-md">
@@ -31,8 +36,9 @@ const Navbar = () => {
             className="px-3 rounded-2xl hover:text-gray-300 hover:bg-blue-300"
             to="/cart"
           >
-            <ShoppingBag />
+            <CartIcon />
           </Link>
+          <div className="px-2">{`$ ${handleTotalPrice()}`}</div>
         </div>
 
         {/* Mobile Menu Toggle Button */}

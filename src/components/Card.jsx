@@ -1,11 +1,15 @@
 import { useState } from "react";
+import { useCart } from "../context/CartContext";
 
 const Card = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
 
-  const handleAddtoCart = () => {
-    const data = { ...product, quantity: quantity };
-    console.log(data);
+  // Add context for cart
+  const { cart, handleAddToCart } = useCart();
+
+  const handleAdd = () => {
+    const item = { ...product, quantity: quantity };
+    handleAddToCart(item);
   };
 
   return (
@@ -17,7 +21,7 @@ const Card = ({ product }) => {
       />
 
       <div className="p-4 space-y-2">
-        <h1 className="text-xl font-bold">{product.title}</h1>
+        <h1 className="text-xl line-clamp-1 font-bold">{product.title}</h1>
         <div className="flex justify-between align-center">
           <h2 className="text-lg font-medium text-gray-800">
             ${product.price}
@@ -47,7 +51,7 @@ const Card = ({ product }) => {
           </div>
         </div>
         <button
-          onClick={handleAddtoCart}
+          onClick={handleAdd}
           className="w-full py-2 bg-black text-white rounded-xl hover:bg-gray-900 transition"
         >
           Add To Cart
